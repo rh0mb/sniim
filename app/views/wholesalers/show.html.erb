@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @wholesaler.name %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @wholesaler.address %>
+</p>
+
+
+<%= link_to 'Edit', edit_wholesaler_path(@wholesaler) %> |
+<%= link_to 'Back', wholesalers_path %>
