@@ -1,5 +1,6 @@
 Sniim::Application.routes.draw do
   resources :wholesalers
+  resources :whole_scrapers
 
 
   # The priority is based upon order of creation:

@@ -1,0 +1,33 @@
+<%= simple_form_for(@wholesaler, :url => { :controller => 'whole_scrapers', :action => "create"}) do |f| %>
+
+
+  <% if @wholesaler.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@wholesaler.errors.count, "error") %> prohibited this wholesaler from being saved:</h2>
+
+      <ul>
+      <% @wholesaler.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <p>Info for url creation</p>
+    <%= f.input :name, as: :string, :label => false, :placeholder => 'txtcounter' %>
+    <%= f.input :address, as: :integer, :label => false, :placeholder => 'pages' %>
+    <%= f.input :phone, as: :string, :label => false, :placeholder => 'location' %>
+    <p>Info for the entries</p>
+    <%= f.input :city, as: :string, :label => false, :placeholder => 'Ciudad' %>
+    <%= f.input :state, as: :string, :label => false, :placeholder => 'Estado' %>
+    <%= f.input :market, as: :string, :label => false, :placeholder => 'Central' %>
+
+
+
+  </div>
+  <div class="actions">
+    <%= f.submit 'Farm url', class: "btn btn-large btn-primary" %>
+  </div>
+<% end %>
+

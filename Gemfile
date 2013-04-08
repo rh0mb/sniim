@@ -6,6 +6,9 @@ gem 'rails', '3.2.12'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'nokogiri'
+gem 'simple_form'
+gem 'bootstrap-sass'
 
 
 # Gems used only for assets and not required

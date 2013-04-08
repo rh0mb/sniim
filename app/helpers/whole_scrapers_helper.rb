@@ -1,0 +1,2 @@
+module WholeScrapersHelper
+end
