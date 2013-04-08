@@ -62,7 +62,7 @@ class WholeScrapersController < ApplicationController
 		data = ""
 		data_array = []
 		doc.css(".Datos").each do |item|
-			item_clean = item.text.delete('&nbsp;')
+			item_clean = item.text.gsub(/&nbsp;/i, "").gsub(/\s+/, " ").strip
 			if !item.css("a").empty?
 				if item.at_css("a")[:href].include? "---"
 					data_array[loop_num] = ""
