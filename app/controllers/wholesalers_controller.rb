@@ -3,6 +3,7 @@ class WholesalersController < ApplicationController
   # GET /wholesalers.json
   def index
     @wholesalers = Wholesaler.all
+    #@filtered = Wholesaler.ask_search(params[:search], params[:search1], params[:search2]) #added
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,25 +1,42 @@
-<h1>Listing wholesalers</h1>
+<div class="container" id="pad-from-navbar">
+  <h1>Listing wholesalers</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Address</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <div class="row-fluid">
+  <div class="span12 pagination-centered">
+    <%= form_tag wholesalers_path, :method => 'get' do %><br><br>
+      <%= select_tag :search, options_for_select(["none", "mail", "web" ]) %>  
+      <%= select_tag :serach1, options_for_select(["Mexico"]) %>  
+      <%= select_tag :search2, options_for_select(mexico_states1) %>  
+      <%= submit_tag "Filtrar", :name => nil, class: "btn btn-success" %>  
+    <% end %>
+    </div>
+  </div>
 
-<% @wholesalers.each do |wholesaler| %>
-  <tr>
-    <td><%= wholesaler.name %></td>
-    <td><%= wholesaler.address %></td>
-    <td><%= link_to 'Show', wholesaler %></td>
-    <td><%= link_to 'Edit', edit_wholesaler_path(wholesaler) %></td>
-    <td><%= link_to 'Destroy', wholesaler, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+  <div class="bidask-wrapper">
+      <table class="table table-condensed table-hover">
+    <tr>
+      <th>Name</th>
+      <th>City</th>
+      <th>Market</th>
+      <th>Phone</th>
+      <th></th>
+    </tr>
 
-<br />
+  <% @wholesalers.each do |wholesaler| %>
+    <tr>
+      <td><%= wholesaler.name %></td>
+      <td><%= wholesaler.city %></td>
+      <td><%= wholesaler.market %></td>
+      <td><%= wholesaler.phone %></td>
+      <td><%= wholesaler.mail %></td>
+      <td><%= link_to 'Show', wholesaler %></td>
+      <td><%= link_to 'Edit', edit_wholesaler_path(wholesaler) %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
 
-<%= link_to 'New Wholesaler', new_wholesaler_path %>
+  <br />
+
+  <%= link_to 'New Wholesaler', new_wholesaler_path %>
+</div>
