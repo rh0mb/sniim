@@ -4,7 +4,7 @@ class SniimMailer < ActionMailer::Base
 
   def sniim_mailer(recipient)
 
-  	recipient.mail
+  	@recipient = recipient
 
     # @listing = listing
     mail(:to => recipient.mail, :subject => "Agroden como herramienta para " + recipient.name)
