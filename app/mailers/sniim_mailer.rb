@@ -7,7 +7,10 @@ class SniimMailer < ActionMailer::Base
   	@recipient = recipient
 
     # @listing = listing
-    mail(:to => recipient.mail, :subject => "Agroden como herramienta para " + recipient.name)
+    mail(:to => recipient.mail, :subject => "Agroden como herramienta para " + recipient.name) do |format|
+    	format.html
+    	format.text
+		end
   end
 
 
