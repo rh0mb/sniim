@@ -59,7 +59,13 @@
           <td><%= link_to 'Show', wholesaler %></td>
           <td class="s-font"><a href="<%= wholesaler.web_page %>"><%= wholesaler.web_page %></a></td>
         <% end %>
-
+      <% elsif @search == "none" %>
+        <td><%= wholesaler.name %></td>
+        <td><%= wholesaler.city %></td>
+        <td><%= wholesaler.market %></td>
+        <td><%= wholesaler.phone %></td>
+        <td><%= link_to 'Show', wholesaler %></td>
+        <td><%= link_to 'Edit', edit_wholesaler_path(wholesaler) %></td>
       <% end %>
 
 
