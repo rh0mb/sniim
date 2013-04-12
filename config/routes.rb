@@ -2,6 +2,8 @@ Sniim::Application.routes.draw do
   resources :wholesalers
   resources :whole_scrapers
 
+  get "/mailto" => "wholesalers#send_mail"
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

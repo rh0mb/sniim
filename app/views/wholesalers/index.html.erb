@@ -4,7 +4,7 @@
   <div class="row-fluid">
   <div class="span12 pagination-centered">
     <%= form_tag wholesalers_path, :method => 'get' do %><br><br>
-      <%= select_tag :search, options_for_select(["none", "mail", "web" ]) %>  
+      <%= select_tag :search, options_for_select(["none", "mail", "web", "both"]) %>  
       <%= select_tag :serach1, options_for_select(["Mexico"]) %>  
       <%= select_tag :search2, options_for_select(mexico_states1) %>  
       <%= submit_tag "Filtrar", :name => nil, class: "btn btn-success" %>  
@@ -12,29 +12,62 @@
     </div>
   </div>
 
-  <div class="bidask-wrapper">
       <table class="table table-condensed table-hover">
+        <div class="bidask-wrapper">
     <tr>
       <th>Name</th>
       <th>City</th>
       <th>Market</th>
       <th>Phone</th>
-      <th></th>
+      <th>Mail</th>
+      <th>Webpage</th>
     </tr>
 
   <% @wholesalers.each do |wholesaler| %>
     <tr>
-      <td><%= wholesaler.name %></td>
-      <td><%= wholesaler.city %></td>
-      <td><%= wholesaler.market %></td>
-      <td><%= wholesaler.phone %></td>
-      <td><%= wholesaler.mail %></td>
-      <td><%= link_to 'Show', wholesaler %></td>
-      <td><%= link_to 'Edit', edit_wholesaler_path(wholesaler) %></td>
+      <% if @search == "mail" %>
+        <% if wholesaler.mail? %>
+          <td class="s-font"><%= wholesaler.name %></td>
+          <td class="s-font"><%= wholesaler.city %></td>
+          <td class="s-font"><%= wholesaler.market %></td>
+          <td class="s-font"><%= wholesaler.phone %></td>
+          <td class="s-font"><%= wholesaler.mail %></td>
+          <td class="s-font"><a href="<%= wholesaler.web_page %>"><%= wholesaler.web_page %></a></td>
+          <td><%= link_to 'Email', mailto_path(:id => wholesaler.id) %></td>
+          <td><%= link_to 'Show', wholesaler %></td>
+          <td><%= link_to 'Edit', edit_wholesaler_path(wholesaler) %></td>
+        <% end %>
+      <% elsif @search == "web" %>
+        <% if wholesaler.web_page? %>
+          <td><%= wholesaler.name %></td>
+          <td><%= wholesaler.city %></td>
+          <td><%= wholesaler.market %></td>
+          <td><%= wholesaler.phone %></td>
+          <td><%= wholesaler.mail %></td>
+          <td class="s-font"><a href="<%= wholesaler.web_page %>"><%= wholesaler.web_page %></a></td>
+          <td><%= link_to 'Show', wholesaler %></td>
+          <td><%= link_to 'Edit', edit_wholesaler_path(wholesaler) %></td>
+        <% end %>
+      <% elsif @search == "both" %>
+        <% if wholesaler.mail? || wholesaler.web_page? %>
+          <td><%= wholesaler.name %></td>
+          <td><%= wholesaler.city %></td>
+          <td><%= wholesaler.market %></td>
+          <td><%= wholesaler.phone %></td>
+          <td><%= wholesaler.mail %></td>
+          <td><%= wholesaler.web_page %></td>
+          <td><%= link_to 'Show', wholesaler %></td>
+          <td class="s-font"><a href="<%= wholesaler.web_page %>"><%= wholesaler.web_page %></a></td>
+        <% end %>
+
+      <% end %>
+
+
+
     </tr>
   <% end %>
-  </table>
 </div>
+  </table>
 
   <br />
 

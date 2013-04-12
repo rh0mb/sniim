@@ -3,12 +3,25 @@ class WholesalersController < ApplicationController
   # GET /wholesalers.json
   def index
     @wholesalers = Wholesaler.all
+    #@wholesalers = Wholesaler.ask_search(params[:search], params[:search1], params[:search2]) #added
+    @filtered = Wholesaler.where("mail?")
+    @search = params[:search]
+    
     #@filtered = Wholesaler.ask_search(params[:search], params[:search1], params[:search2]) #added
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @wholesalers }
     end
+  end
+
+
+  def send_mail
+    wholesaler = Wholesaler.find(params[:id])
+    SniimMailer.sniim_mailer(wholesaler).deliver
+    wholesaler.update_attributes(:contacted_email => Date.today)
+    redirect_to '/wholesalers?&search=mail'
+    flash[:notice] = "Contact has been emailed"
   end
 
   # GET /wholesalers/1
