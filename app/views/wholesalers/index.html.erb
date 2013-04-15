@@ -31,7 +31,11 @@
           <td class="s-font"><%= wholesaler.city %></td>
           <td class="s-font"><%= wholesaler.market %></td>
           <td class="s-font"><%= wholesaler.phone %></td>
-          <td class="s-font"><%= wholesaler.mail %></td>
+          <% if !wholesaler.contacted_email.nil? ||  !wholesaler.contacted_email.empty? %>
+            <td class="s-font"><b><%= wholesaler.mail %></b></td>
+          <% else %>
+            <td class="s-font"><%= wholesaler.mail %></td>
+          <% end %>
           <td class="s-font"><a href="<%= wholesaler.web_page %>"><%= wholesaler.web_page %></a></td>
           <td><%= link_to 'Email', mailto_path(:id => wholesaler.id) %></td>
           <td><%= link_to 'Show', wholesaler %></td>
@@ -39,37 +43,49 @@
         <% end %>
       <% elsif @search == "web" %>
         <% if wholesaler.web_page? %>
-          <td><%= wholesaler.name %></td>
-          <td><%= wholesaler.city %></td>
-          <td><%= wholesaler.market %></td>
-          <td><%= wholesaler.phone %></td>
-          <td><%= wholesaler.mail %></td>
+          <td class="s-font"><%= wholesaler.name %></td>
+          <td class="s-font"><%= wholesaler.city %></td>
+          <td class="s-font"><%= wholesaler.market %></td>
+          <td class="s-font"><%= wholesaler.phone %></td>
+          <% if !wholesaler.contacted_email.nil? ||  !wholesaler.contacted_email.empty? %>
+            <td class="s-font"><b><%= wholesaler.mail %></b></td>
+          <% else %>
+            <td class="s-font"><%= wholesaler.mail %></td>
+          <% end %>
           <td class="s-font"><a href="<%= wholesaler.web_page %>"><%= wholesaler.web_page %></a></td>
           <td><%= link_to 'Show', wholesaler %></td>
           <td><%= link_to 'Edit', edit_wholesaler_path(wholesaler) %></td>
         <% end %>
       <% elsif @search == "both" %>
         <% if wholesaler.mail? || wholesaler.web_page? %>
-          <td><%= wholesaler.name %></td>
-          <td><%= wholesaler.city %></td>
-          <td><%= wholesaler.market %></td>
-          <td><%= wholesaler.phone %></td>
-          <td><%= wholesaler.mail %></td>
-          <td><%= wholesaler.web_page %></td>
-          <td><%= link_to 'Show', wholesaler %></td>
+          <td class="s-font"><%= wholesaler.name %></td>
+          <td class="s-font"><%= wholesaler.city %></td>
+          <td class="s-font"><%= wholesaler.market %></td>
+          <td class="s-font"><%= wholesaler.phone %></td>
+          <% if !wholesaler.contacted_email.nil? ||  !wholesaler.contacted_email.empty? %>
+            <td class="s-font"><b><%= wholesaler.mail %></b></td>
+          <% else %>
+            <td class="s-font"><%= wholesaler.mail %></td>
+          <% end %>
+          <td class="s-font"><%= wholesaler.mail %></td>
           <td class="s-font"><a href="<%= wholesaler.web_page %>"><%= wholesaler.web_page %></a></td>
+          <td><%= link_to 'Show', wholesaler %></td>
+          <td><%= link_to 'Edit', edit_wholesaler_path(wholesaler) %></td>
         <% end %>
       <% elsif @search == "none" %>
-        <td><%= wholesaler.name %></td>
-        <td><%= wholesaler.city %></td>
-        <td><%= wholesaler.market %></td>
-        <td><%= wholesaler.phone %></td>
-        <td><%= link_to 'Show', wholesaler %></td>
-        <td><%= link_to 'Edit', edit_wholesaler_path(wholesaler) %></td>
+        <td class="s-font"><%= wholesaler.name %></td>
+          <td class="s-font"><%= wholesaler.city %></td>
+          <td class="s-font"><%= wholesaler.market %></td>
+          <td class="s-font"><%= wholesaler.phone %></td>
+          <% if !wholesaler.contacted_email.nil? ||  !wholesaler.contacted_email.empty? %>
+            <td class="s-font"><b><%= wholesaler.mail %></b></td>
+          <% else %>
+            <td class="s-font"><%= wholesaler.mail %></td>
+          <% end %>
+          <td class="s-font"><a href="<%= wholesaler.web_page %>"><%= wholesaler.web_page %></a></td>
+          <td><%= link_to 'Show', wholesaler %></td>
+          <td><%= link_to 'Edit', edit_wholesaler_path(wholesaler) %></td>
       <% end %>
-
-
-
     </tr>
   <% end %>
 </div>
