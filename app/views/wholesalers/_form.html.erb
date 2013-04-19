@@ -1,4 +1,4 @@
-<%= form_for(@wholesaler) do |f| %>
+<%= simple_form_for(@wholesaler) do |f| %>
   <% if @wholesaler.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@wholesaler.errors.count, "error") %> prohibited this wholesaler from being saved:</h2>
@@ -12,14 +12,22 @@
   <% end %>
 
   <div class="field">
-    <%= f.label "url" %><br />
-    <%= f.text_area :name %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_area :address %>
+    <%= f.input :name, as: :string, :label => false, :placeholder => 'name' %>
+    <%= f.input :address, as: :string, :label => false, :placeholder => 'address' %>
+    <%= f.input :phone, as: :string, :label => false, :placeholder => 'phone' %>
+    <%= f.input :fax, as: :string, :label => false, :placeholder => 'fax' %>
+    <%= f.input :line_of_b, as: :string, :label => false, :input_html => { :value => "Frutas y Hortalizas" } %>
+    <%= f.input :prodcuts, as: :string, :label => false, :placeholder => 'products' %>
+    <%= f.input :mail, as: :string, :label => false, :placeholder => 'mail' %>
+    <%= f.input :city, as: :string, :label => false, :placeholder => 'Ciudad' %>
+    <%= f.input :state, as: :string, :label => false, :placeholder => 'Estado' %>
+    <%= f.input :market, as: :string, :label => false, :placeholder => 'Productor, comerzializador, etc' %>
+
+
+
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Crear', class: "btn btn-large btn-primary" %>
   </div>
 <% end %>
+
