@@ -1,0 +1,2 @@
+module VitoScrapersHelper
+end

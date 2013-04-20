@@ -1,6 +1,7 @@
 Sniim::Application.routes.draw do
   resources :wholesalers
   resources :whole_scrapers
+  resources :vito_scrapers
 
   get "/mailto" => "wholesalers#send_mail"
 
